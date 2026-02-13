@@ -17,33 +17,26 @@ body {
   justify-content: center;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
-  /* هنا نضع صورة القط كخلفية */
-  background-image: url('https://p16-capcut-va.ibyteimg.com/tos-alisg-i-7393vqy7v3-sg/092e666991754096899387a6c9869632~tplv-7393vqy7v3-sg-foo.image'); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(135deg, #ff9ecf, #ffd6ec);
 }
 
 .container {
-  /* جعل الصندوق شفاف قليلاً لترى صورة القط خلفه */
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(5px);
+  background: #ffffff;
   padding: 40px 30px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
   position: relative;
   width: 90%;
   max-width: 400px;
-  min-height: 280px;
+  min-height: 260px;
   overflow: hidden;
 }
 
 h1 {
   color: #ff2e83;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-size: 22px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 button {
@@ -53,36 +46,25 @@ button {
   border-radius: 10px;
   cursor: pointer;
   transition: 0.25s ease;
-  font-weight: bold;
 }
 
 #yesBtn {
   background-color: #ff2e83;
   color: white;
-  position: absolute;
-  /* تثبيت Yes على اليسار */
-  left: 50px;
-  bottom: 60px;
 }
 
 #yesBtn:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 #noBtn {
   background-color: #d9d9d9;
-  color: #333;
   position: absolute;
-  /* وضع No في البداية على اليمين */
-  right: 50px;
-  bottom: 60px;
 }
 
 .message {
-  font-size: 22px;
+  font-size: 20px;
   color: #ff2e83;
-  font-weight: bold;
-  margin-top: 60px;
   animation: fadeIn 0.6s ease-in-out;
 }
 
@@ -96,7 +78,7 @@ button {
 <body>
 
 <div class="container" id="box">
-  <h1>Will you be my Valentine? 🩵🩷🩵🩷</h1>
+  <h1>Will you be my Valentine? 😘🌹</h1>
   <button id="yesBtn">Yes 💖</button>
   <button id="noBtn">No 😱</button>
 </div>
@@ -106,33 +88,31 @@ const box = document.getElementById("box");
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 
-// وظيفة حركة زر No
+// وضع زر No في مكان ابتدائي
+noBtn.style.top = "140px";
+noBtn.style.left = "200px";
+
+yesBtn.addEventListener("click", function() {
+  box.innerHTML = "<div class='message'>You just made yoyo the happiest person alive 🩵🩷</div>";
+});
+
 function moveButton() {
   const boxRect = box.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
 
-  // حساب الحدود لضمان عدم خروج الزر عن الصندوق
-  const maxX = box.clientWidth - btnRect.width - 20;
-  const maxY = box.clientHeight - btnRect.height - 20;
+  const maxX = box.clientWidth - btnRect.width - 10;
+  const maxY = box.clientHeight - btnRect.height - 10;
 
   const randomX = Math.random() * maxX;
   const randomY = Math.random() * maxY;
 
-  // إزالة الـ right واستخدام الـ left للتحريك الحر
-  noBtn.style.right = "auto";
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
 }
 
+// يهرب عند محاولة اللمس أو الاقتراب
 noBtn.addEventListener("mouseenter", moveButton);
-noBtn.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  moveButton();
-});
-
-yesBtn.addEventListener("click", function() {
-  box.innerHTML = "<div class='message'>You just made yoyo the happiest person alive 🩵🩷🩵🩷</div>";
-});
+noBtn.addEventListener("touchstart", moveButton);
 </script>
 
 </body>
