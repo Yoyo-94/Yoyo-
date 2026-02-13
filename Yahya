@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From yoyo 🩵</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9ecf, #ffd6ec);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+h1 {
+  margin-bottom: 30px;
+  color: #ff3b8d;
+}
+
+button {
+  padding: 12px 30px;
+  font-size: 18px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background: #ff3b8d;
+  color: white;
+}
+
+#yesBtn:hover {
+  transform: scale(1.1);
+}
+
+#noBtn {
+  background: #ccc;
+  position: absolute;
+}
+
+.message {
+  font-size: 24px;
+  color: #ff3b8d;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="box">
+  <h1>Will you be my Valentine? 😘🌹</h1>
+  <button id="yesBtn" onclick="accept()">Yes 💖</button>
+  <button id="noBtn" onmouseover="move()">No 😱</button>
+</div>
+
+<script>
+function accept() {
+  document.getElementById("box").innerHTML =
+  "<div class='message'>You just made yoyo the happiest person alive 🩵🩷</div>";
+}
+
+function move() {
+  const btn = document.getElementById("noBtn");
+  btn.style.top = Math.random() * 200 + "px";
+  btn.style.left = Math.random() * 200 + "px";
+}
+</script>
+
+</body>
+</html>
